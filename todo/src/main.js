@@ -7,10 +7,7 @@ const list = document.getElementById("list");
 const todoItems = [
     { text: "Handla", done: false },
     { text: "Tvätta", done: false },
-    { text: "Städa", done: false }tsc -v
-
-
-    
+    { text: "Städa", done: false }
 ];
 
 const todoList = (todo) => {
