@@ -4,7 +4,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: black;
   background-color: #242424;
 
   font-synthesis: none;
@@ -24,8 +24,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -73,13 +71,47 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  margin: 10px;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: purple;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.hero {
+  height: 100vh;
+  width: 100%;
+  background-image: url('images/bakgrund.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+h3 {
+  color: black;
+  margin: 10px;
+}
+
+ul {
+  list-style: none;
+  color: black;
+}
+
+li {
+  border: solid 2px purple;
+  padding: 10px;
+  margin: 10px;
+  margin: 10px;
+  background-color: plum;
 }
 
 @media (prefers-color-scheme: light) {

@@ -1,13 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>todo</title>
+    <title>The Todos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   </head>
   <body>
-    <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
+    <section class="hero">
+      <h3>To do-lista</h3>
+      <input type="text" id="todo" placeholder="Vad behöver du göra?"/>
+      <button id="button">Lägg till</button>
+    <ul id="list">
+    </ul>
+    </ul>
+  </section>
   </body>
 </html>

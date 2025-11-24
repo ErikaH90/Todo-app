@@ -1,24 +1,49 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import "./style.css";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const button = document.getElementById("button");
+const todo = document.getElementById("todo");
+const list = document.getElementById("list");
 
-setupCounter(document.querySelector('#counter'))
+const todoItems = [
+    { text: "Handla", done: false },
+    { text: "Tvätta", done: false },
+    { text: "Städa", done: false }tsc -v
+
+
+    
+];
+
+const todoList = (todo) => {
+    const li = document.createElement("li");
+    li.textContent = todo.text;
+    const button = document.createElement("button");
+    button.textContent = "Ta bort";
+    button.addEventListener("click", () => { 
+        li.remove();
+        todo.done = true;
+    });
+    li.appendChild(button);
+    return li;
+}
+
+todoItems.forEach(todo => {
+    const li = todoList(todo);
+    list.appendChild(li);
+});
+
+button.addEventListener("click", () => {
+    const input = todo.value.trim();
+    const newTodo = { text: input, done: false };
+    todoItems.push(newTodo);
+    const listElement = document.createElement("li");
+    listElement.textContent = input;
+    const button = document.createElement("button");
+    button.textContent = "Ta bort";
+    button.addEventListener("click", () => {
+        listElement.remove();
+        newTodo.done = true;
+    });
+    listElement.appendChild(button);
+    list.appendChild(listElement);
+    todo.value = "";
+});
