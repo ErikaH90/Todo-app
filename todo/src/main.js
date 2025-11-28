@@ -4,43 +4,64 @@ const button = document.getElementById("button");
 const todo = document.getElementById("todo");
 const list = document.getElementById("list");
 
-const todoItems = [
+// Hämta todos från localStorage eller använd hårdkodad lista
+let todoItems = JSON.parse(localStorage.getItem("todos")) || [
     { text: "Handla", done: false },
     { text: "Tvätta", done: false },
     { text: "Städa", done: false }
 ];
 
+// Funktion som skapar li-element för en todo
 const todoList = (todo) => {
     const li = document.createElement("li");
     li.textContent = todo.text;
+
+    // Om todo är klar, visa det visuellt
+    if (todo.done) {
+        li.style.textDecoration = "line-through";
+        li.style.color = "gray";
+    }
+
     const button = document.createElement("button");
-    button.textContent = "Ta bort";
-    button.addEventListener("click", () => { 
-        li.remove();
-        todo.done = true;
+    button.textContent = todo.done ? "Ångra" : "Ta bort";
+
+    button.addEventListener("click", () => {
+        // Växla done-status
+        todo.done = !todo.done;
+        renderTodos();
     });
+
     li.appendChild(button);
     return li;
-}
+};
 
-todoItems.forEach(todo => {
-    const li = todoList(todo);
-    list.appendChild(li);
-});
+// Funktion för att rendera alla todos
+const renderTodos = () => {
+    list.innerHTML = "";
+    // Sortera så att oklara todos visas först
+    todoItems.sort((a, b) => a.done - b.done);
 
-button.addEventListener("click", () => {
-    const input = todo.value.trim();
-    const newTodo = { text: input, done: false };
-    todoItems.push(newTodo);
-    const listElement = document.createElement("li");
-    listElement.textContent = input;
-    const button = document.createElement("button");
-    button.textContent = "Ta bort";
-    button.addEventListener("click", () => {
-        listElement.remove();
-        newTodo.done = true;
+    todoItems.forEach(todo => {
+        const li = todoList(todo);
+        list.appendChild(li);
     });
-    listElement.appendChild(button);
-    list.appendChild(listElement);
+
+    // Spara i localStorage
+    localStorage.setItem("todos", JSON.stringify(todoItems));
+};
+
+// Rendera initialt
+renderTodos();
+
+// Lägg till ny todo via input
+button.addEventListener("click", () => {
+    const inputValue = todo.value.trim();
+    if (inputValue === "") return;
+
+    const newTodo = { text: inputValue, done: false };
+    todoItems.push(newTodo);
     todo.value = "";
+
+    renderTodos();
 });
+
